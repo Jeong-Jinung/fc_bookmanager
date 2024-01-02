@@ -7,20 +7,28 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
+import java.sql.Array;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -35,8 +43,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Data // @ToString, @Getter, @Setter, @EqualsAndHashCode, @RequiredArgsConstructor를 한꺼번에 설정
 @Builder // 빌더 패턴을 사용할 수 있게 해줌
 @Entity
-@Table(name = "member", indexes = {@Index(columnList = "name")}, uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 @EntityListeners(value = MemberEntityListener.class)
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 public class Member extends BaseEntity {
 
     @Id
@@ -52,28 +61,8 @@ public class Member extends BaseEntity {
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
-//    @Column(updatable = false)
-//    @CreatedDate
-//    private LocalDateTime createdAt;
-//
-//    @LastModifiedDate
-//    private LocalDateTime updatedAt;
-
-    @Transient // db에 저장하지 않음
-    private String testData;
-
-//    @PrePersist
-//    public void prePersist() {
-//        this.createdAt = LocalDateTime.now();
-//        this.updatedAt = LocalDateTime.now();
-//
-//    }
-//
-//    @PreUpdate
-//    public void preUpdate() {
-//        this.updatedAt = LocalDateTime.now();
-//    }
-
-
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "member_id", insertable = false, updatable = false) // member entity에서 history entity 수정하지 못하게 방지
+    private List<MemberHistory> memberHistories = new ArrayList(); // NPE 방지
 
 }

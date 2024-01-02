@@ -2,7 +2,9 @@ package com.fastcampus.jpa.bookmanager.repository;
 
 import com.fastcampus.jpa.bookmanager.domain.Gender;
 import com.fastcampus.jpa.bookmanager.domain.Member;
+import com.fastcampus.jpa.bookmanager.domain.MemberHistory;
 import java.time.LocalDateTime;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -175,6 +177,31 @@ class MemberRepositoryTest {
         memberRepository.save(member);
 
         memberHistoryRepository.findAll().forEach(System.out::println);
+    }
+
+    @Test
+    void memberRelationTest() {
+        Member member = new Member();
+        member.setName("david");
+        member.setEmail("david@fastcompus.com");
+        member.setGender(Gender.MALE);
+
+        memberRepository.save(member);
+
+        member.setName("daniel");
+        memberRepository.save(member);
+
+        member.setEmail("daniel@fastcampus.com");
+        memberRepository.save(member);
+
+//        memberHistoryRepository.findAll().forEach(System.out::println);
+
+//        List<MemberHistory> result = memberHistoryRepository.findByMemberId(
+//            memberRepository.findByEmail("daniel@fastcampus.com").getId());
+
+        List<MemberHistory> result = memberRepository.findByEmail("daniel@fastcampus.com").getMemberHistories();
+
+        result.forEach(System.out::println);
     }
 
 
