@@ -4,7 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,12 +31,22 @@ public class Author extends BaseEntity{
 
     private String country;
 
-    @ManyToMany
+//    @ManyToMany
+    @OneToMany
+    @JoinColumn(name = "author_id")
     @ToString.Exclude
-    private List<Book> books = new ArrayList<>();
+    private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
 
-    public void addBook(Book... book) {
-        Collections.addAll(this.books, book);
+    public void addBookAndAuthors(BookAndAuthor... bookAndAuthors) {
+        Collections.addAll(this.bookAndAuthors, bookAndAuthors);
     }
+
+    // User
+
+    // User / Product -> N : N
+    // user_products -> order table 로 만들어서 해결
+    // User <-> Order <-> Product
+
+    // Product
 
 }
