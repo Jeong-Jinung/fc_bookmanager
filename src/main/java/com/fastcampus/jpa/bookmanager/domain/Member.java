@@ -63,6 +63,11 @@ public class Member extends BaseEntity {
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "member_id", insertable = false, updatable = false) // member entity에서 history entity 수정하지 못하게 방지
+    @ToString.Exclude
     private List<MemberHistory> memberHistories = new ArrayList(); // NPE 방지
 
+    @OneToMany
+    @JoinColumn(name = "member_id")
+    @ToString.Exclude
+    private List<Review> reviews = new ArrayList<>();
 }

@@ -194,7 +194,7 @@ class MemberRepositoryTest {
         member.setEmail("daniel@fastcampus.com");
         memberRepository.save(member);
 
-//        memberHistoryRepository.findAll().forEach(System.out::println);
+        memberHistoryRepository.findAll().forEach(System.out::println);
 
 //        List<MemberHistory> result = memberHistoryRepository.findByMemberId(
 //            memberRepository.findByEmail("daniel@fastcampus.com").getId());
@@ -202,6 +202,8 @@ class MemberRepositoryTest {
         List<MemberHistory> result = memberRepository.findByEmail("daniel@fastcampus.com").getMemberHistories();
 
         result.forEach(System.out::println);
+
+        System.out.println("MemberHistory.getUser() : " + memberHistoryRepository.findAll().get(0).getMember());
     }
 
 
