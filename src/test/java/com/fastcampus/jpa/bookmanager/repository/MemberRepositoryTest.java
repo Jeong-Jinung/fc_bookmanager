@@ -3,13 +3,14 @@ package com.fastcampus.jpa.bookmanager.repository;
 import com.fastcampus.jpa.bookmanager.domain.Gender;
 import com.fastcampus.jpa.bookmanager.domain.Member;
 import com.fastcampus.jpa.bookmanager.domain.MemberHistory;
-import java.time.LocalDateTime;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
+@Transactional
 class MemberRepositoryTest {
     @Autowired
     private MemberRepository memberRepository;

@@ -4,12 +4,8 @@ import com.fastcampus.jpa.bookmanager.domain.Member;
 import com.fastcampus.jpa.bookmanager.domain.MemberHistory;
 import com.fastcampus.jpa.bookmanager.repository.MemberHistoryRepository;
 import com.fastcampus.jpa.bookmanager.support.BeanUtils;
-import jakarta.persistence.PostPersist;
-import jakarta.persistence.PostUpdate;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import javax.persistence.PostPersist;
+import javax.persistence.PostUpdate;
 
 
 /**

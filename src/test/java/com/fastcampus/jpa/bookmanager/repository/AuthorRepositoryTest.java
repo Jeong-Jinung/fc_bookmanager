@@ -1,11 +1,9 @@
 package com.fastcampus.jpa.bookmanager.repository;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.fastcampus.jpa.bookmanager.domain.Author;
 import com.fastcampus.jpa.bookmanager.domain.Book;
 import com.fastcampus.jpa.bookmanager.domain.BookAndAuthor;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

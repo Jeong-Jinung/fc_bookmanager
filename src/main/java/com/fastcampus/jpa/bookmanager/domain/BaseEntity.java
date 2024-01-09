@@ -2,9 +2,9 @@ package com.fastcampus.jpa.bookmanager.domain;
 
 
 import com.fastcampus.jpa.bookmanager.domain.listener.Auditable;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
+import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
