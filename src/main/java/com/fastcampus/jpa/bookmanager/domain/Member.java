@@ -59,4 +59,9 @@ public class Member extends BaseEntity {
     @JoinColumn(name = "member_id")
     @ToString.Exclude
     private List<Review> reviews = new ArrayList<>();
+
+
+    public void setName(@NonNull String name) {
+        this.name = name;
+    }
 }
